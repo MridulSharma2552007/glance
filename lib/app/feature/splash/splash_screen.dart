@@ -14,10 +14,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final supabase=Supabase.instance.client;
+  final supabase = Supabase.instance.client;
   String? _userId;
 
-  Future<AuthResponse> _googleSignIn() async {
+  Future<void> _googleSignIn() async {
   // Ensure the platform sign-in is initialized before calling authenticate.
   final serverClientId = Env.googleServerClientId;
   if (serverClientId.isEmpty) {
@@ -26,9 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   await GoogleSignIn.instance.initialize(serverClientId: serverClientId);
 
   final account = await GoogleSignIn.instance.authenticate();
-  if (account == null) {
-    throw 'User cancelled sign in or no account selected.';
-  }
 
   final googleAuth = account.authentication;
   final idToken = googleAuth.idToken;
@@ -39,12 +36,22 @@ class _SplashScreenState extends State<SplashScreen> {
   if (idToken == null) {
     throw 'No ID Token found.';
   }
+  debugPrint('🔑 Google idToken: present (len ${idToken.length}) ✅');
 
-  return supabase.auth.signInWithIdToken(
+  // Attempt Supabase sign-in and print clear emoji-marked results.
+  final res = await supabase.auth.signInWithIdToken(
     provider: OAuthProvider.google,
     idToken: idToken,
     accessToken: accessToken,
   );
+
+  debugPrint('🧾 Supabase response: session=${res.session != null ? 'present ✅' : 'missing ❌'}');
+  if (res.session != null) {
+    debugPrint('🎉 Auth successful — accessToken: ${res.session?.accessToken ?? 'n/a'}');
+    return;
+  }
+
+  throw 'Supabase did not return a session.';
 }
   @override
   void initState() {
