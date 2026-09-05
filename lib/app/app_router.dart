@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:glance/app/feature/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
