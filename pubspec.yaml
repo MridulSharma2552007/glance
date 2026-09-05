@@ -39,6 +39,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   dio: ^5.11.1
   flutter_dotenv: ^6.0.1
+  supabase_flutter: ^2.17.2
+  google_sign_in: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Include environment file so `flutter_dotenv` can load it at runtime.
+  assets:
+    - .env
 
   # To add assets to your application, add an assets section, like this:
   # assets:
