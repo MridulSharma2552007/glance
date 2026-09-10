@@ -2,7 +2,7 @@ erDiagram
     STUDENT {
         string roll_no PK
         string email
-        vector face_vector "512-dim face embedding"
+        text face_vector
         string auth_token
     }
 
@@ -12,36 +12,8 @@ erDiagram
     }
 
     SEMESTER_STUDENT {
-        int sem_id FK "-> SEMESTER.sem_id"
-        string roll_no FK "-> STUDENT.roll_no"
-    }
-
-    TEACHER {
-        int employee_id PK
-        string email
-    }
-
-    SUBJECT {
-        int subject_id PK
-        string subject_name
-    }
-
-    TEACHER_SUBJECT {erDiagram
-    STUDENT {
-        string roll_no PK
-        string email
-        vector face_vector "512-dim face embedding"
-        string auth_token
-    }
-
-    SEMESTER {
-        int sem_id PK
-        string sem_name
-    }
-
-    SEMESTER_STUDENT {
-        int sem_id FK "-> SEMESTER.sem_id"
-        string roll_no FK "-> STUDENT.roll_no"
+        int sem_id FK
+        string roll_no FK
     }
 
     TEACHER {
@@ -55,65 +27,34 @@ erDiagram
     }
 
     TEACHER_SUBJECT {
-        int teacher_id FK "-> TEACHER.employee_id"
-        int subject_id FK "-> SUBJECT.subject_id"
+        int teacher_id FK
+        int subject_id FK
     }
 
     LIVE_CLASS {
         int live_class_id PK
-        int subject_id FK "-> SUBJECT.subject_id"
-        int teacher_id FK "-> TEACHER.employee_id"
-        int sem_id FK "-> SEMESTER.sem_id"
+        int subject_id FK
+        int teacher_id FK
+        int sem_id FK
         datetime created_at
     }
 
     ATTENDANCE {
         int attendance_id PK
-        int live_class_id FK "-> LIVE_CLASS.live_class_id"
-        string roll_no FK "-> STUDENT.roll_no"
+        int live_class_id FK
+        string roll_no FK
         datetime created_at
     }
 
-    STUDENT ||--o{ SEMESTER_STUDENT : "enrolled via"
-    SEMESTER ||--o{ SEMESTER_STUDENT : "has"
+    STUDENT ||--o{ SEMESTER_STUDENT : enrolled_via
+    SEMESTER ||--o{ SEMESTER_STUDENT : has
 
-    TEACHER ||--o{ TEACHER_SUBJECT : "assigned via"
-    SUBJECT ||--o{ TEACHER_SUBJECT : "assigned via"
+    TEACHER ||--o{ TEACHER_SUBJECT : assigned_via
+    SUBJECT ||--o{ TEACHER_SUBJECT : assigned_via
 
-    SUBJECT ||--o{ LIVE_CLASS : "held for"
-    TEACHER ||--o{ LIVE_CLASS : "conducts"
-    SEMESTER ||--o{ LIVE_CLASS : "scheduled in"
+    SUBJECT ||--o{ LIVE_CLASS : held_for
+    TEACHER ||--o{ LIVE_CLASS : conducts
+    SEMESTER ||--o{ LIVE_CLASS : scheduled_in
 
-    LIVE_CLASS ||--o{ ATTENDANCE : "generates"
-    STUDENT ||--o{ ATTENDANCE : "marks"
-        int teacher_id FK "-> TEACHER.employee_id"
-        int subject_id FK "-> SUBJECT.subject_id"
-    }
-
-    LIVE_CLASS {
-        int live_class_id PK
-        int subject_id FK "-> SUBJECT.subject_id"
-        int teacher_id FK "-> TEACHER.employee_id"
-        int sem_id FK "-> SEMESTER.sem_id"
-        datetime created_at
-    }
-
-    ATTENDANCE {
-        int attendance_id PK
-        int live_class_id FK "-> LIVE_CLASS.live_class_id"
-        string roll_no FK "-> STUDENT.roll_no"
-        datetime created_at
-    }
-
-    STUDENT ||--o{ SEMESTER_STUDENT : "enrolled via"
-    SEMESTER ||--o{ SEMESTER_STUDENT : "has"
-
-    TEACHER ||--o{ TEACHER_SUBJECT : "assigned via"
-    SUBJECT ||--o{ TEACHER_SUBJECT : "assigned via"
-
-    SUBJECT ||--o{ LIVE_CLASS : "held for"
-    TEACHER ||--o{ LIVE_CLASS : "conducts"
-    SEMESTER ||--o{ LIVE_CLASS : "scheduled in"
-
-    LIVE_CLASS ||--o{ ATTENDANCE : "generates"
-    STUDENT ||--o{ ATTENDANCE : "marks"
+    LIVE_CLASS ||--o{ ATTENDANCE : generates
+    STUDENT ||--o{ ATTENDANCE : marks
