@@ -1,53 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:glance/core/theme/app_colors.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-
-  String? _userId;
-
-@override
-  void initState() {
-    super.initState();
-   
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.amberSoft,
-
+     backgroundColor: AppColors.charcoal,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        
-          children: [
-          Text(_userId ?? ''),
-          ElevatedButton(
-            onPressed: () async {
-              try {
-               
-              } catch (e) {
-                debugPrint('Google sign-in failed: $e');
-                print(e);
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Sign in failed: ${e.toString()}')),
-                  );
-                }
-              }
-            },
-            child: Text('SIGN IN'),
-          )
-        ],
-            ),
+        child: Text('Glance',style: TextTheme.of(context).displayLarge,),
       ),
     );
   }
