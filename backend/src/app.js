@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({
-        message: "Glance API is running"
+        message: "Glance API is running..."
     });
 });
 

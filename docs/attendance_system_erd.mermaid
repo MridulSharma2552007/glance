@@ -1,0 +1,60 @@
+erDiagram
+    STUDENT {
+        string roll_no PK
+        string email
+        text face_vector
+        string auth_token
+    }
+
+    SEMESTER {
+        int sem_id PK
+        string sem_name
+    }
+
+    SEMESTER_STUDENT {
+        int sem_id FK
+        string roll_no FK
+    }
+
+    TEACHER {
+        int employee_id PK
+        string email
+    }
+
+    SUBJECT {
+        int subject_id PK
+        string subject_name
+    }
+
+    TEACHER_SUBJECT {
+        int teacher_id FK
+        int subject_id FK
+    }
+
+    LIVE_CLASS {
+        int live_class_id PK
+        int subject_id FK
+        int teacher_id FK
+        int sem_id FK
+        datetime created_at
+    }
+
+    ATTENDANCE {
+        int attendance_id PK
+        int live_class_id FK
+        string roll_no FK
+        datetime created_at
+    }
+
+    STUDENT ||--o{ SEMESTER_STUDENT : enrolled_via
+    SEMESTER ||--o{ SEMESTER_STUDENT : has
+
+    TEACHER ||--o{ TEACHER_SUBJECT : assigned_via
+    SUBJECT ||--o{ TEACHER_SUBJECT : assigned_via
+
+    SUBJECT ||--o{ LIVE_CLASS : held_for
+    TEACHER ||--o{ LIVE_CLASS : conducts
+    SEMESTER ||--o{ LIVE_CLASS : scheduled_in
+
+    LIVE_CLASS ||--o{ ATTENDANCE : generates
+    STUDENT ||--o{ ATTENDANCE : marks
