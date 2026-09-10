@@ -1,10 +1,6 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:glance/core/theme/app_colors.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:glance/core/config/config.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
