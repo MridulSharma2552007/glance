@@ -13,7 +13,7 @@ class AppTypography {
       color: AppColors.amberSoft,
     ),
     headlineLarge: GoogleFonts.fraunces(
-      fontSize: 28,
+      fontSize: 44,
       fontWeight: FontWeight.w500,
       letterSpacing: -0.2,
       color: AppColors.ink,
@@ -36,15 +36,15 @@ class AppTypography {
       height: 1.45,
     ),
     bodyMedium: GoogleFonts.inter(
-      fontSize: 13.5,
-      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
       color: AppColors.inkSoft,
       height: 1.4,
     ),
     labelLarge: GoogleFonts.inter(
-      fontSize: 14.5,
-      fontWeight: FontWeight.w600,
-      color: AppColors.ink,
+      fontSize: 16.5,
+      fontWeight: FontWeight.w500,
+      color: const Color.fromARGB(255, 163, 137, 53),
     ),
     labelMedium: GoogleFonts.inter(
       fontSize: 12.5,
