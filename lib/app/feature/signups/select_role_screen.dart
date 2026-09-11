@@ -4,7 +4,6 @@ import 'package:glance/core/storage/storage_keys.dart';
 import 'package:glance/core/storage/storage_services.dart';
 import 'package:glance/core/theme/app_colors.dart';
 import 'package:glance/core/theme/text_theme.dart';
-import 'package:go_router/go_router.dart';
 
 class SelectRoleScreen extends StatefulWidget {
   const SelectRoleScreen({super.key});

@@ -34,7 +34,7 @@ class AppColors {
   // Slightly different from `ink` on purpose: this is pure charcoal for linework,
   // while `ink` stays the UI text/button color. Keep them separate so a future
   // UI-ink tweak doesn't silently change the logo.
-  static const charcoal = Color(0xFF1E1B16);
+  static const charcoal = Color(0xFF000000);
 
   // Class-card background rotation
   static const classCardBg = [roseSoft, lavSoft, skySoft, mossSoft, amberSoft];

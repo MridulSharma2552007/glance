@@ -68,6 +68,7 @@ flutter:
   # Include environment file so `flutter_dotenv` can load it at runtime.
   assets:
     - .env
+    - assets/pngwing.com.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
