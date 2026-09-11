@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glance/app/feature/signups/signin_screen.dart';
+import 'package:glance/core/storage/storage_keys.dart';
+import 'package:glance/core/storage/storage_services.dart';
 import 'package:glance/core/theme/app_colors.dart';
 import 'package:glance/core/theme/text_theme.dart';
 import 'package:go_router/go_router.dart';
@@ -84,7 +86,9 @@ class _RoleSelectionWidgetState extends State<RoleSelectionWidget> {
   void _onTapDown(_) => setState(() => _pressed = true);
   void _onTapUp(_) => setState(() => _pressed = false);
   void _onTapCancel() => setState(() => _pressed = false);
-  String userrole='';
+  
+ 
+    String userrole='';
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +100,8 @@ class _RoleSelectionWidgetState extends State<RoleSelectionWidget> {
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      onTap: () {
-       setState(() {
-        userrole=widget.role.toString();
-       });
+      onTap: () async{
+      await StorageServices.setString(StorageKeys.userrole, widget.role.toString());
 
        widget.pageController.animateToPage(
          1,
