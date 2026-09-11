@@ -7,7 +7,7 @@ class SupabaseInternals{
     final supabase = Supabase.instance.client;
   
   
-   Future<void> _googleSignIn() async {
+   Future<void> googleSignIn() async {
   // Ensure the platform sign-in is initialized before calling authenticate.
   final serverClientId = Env.googleServerClientId;
   if (serverClientId.isEmpty) {

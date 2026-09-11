@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glance/core/supabase/supabase_internals.dart';
 import 'package:glance/core/theme/app_colors.dart';
 
 class SigninScreen extends StatelessWidget {
@@ -20,13 +21,15 @@ class SigninScreen extends StatelessWidget {
             Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+              SupabaseInternals().googleSignIn();
+                },
                 borderRadius: BorderRadius.circular(18),
                 child: Ink(
                   height: 72,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.cream,
                     borderRadius: BorderRadius.circular(18),
                     boxShadow: [
                       BoxShadow(
