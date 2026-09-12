@@ -21,8 +21,14 @@ class SigninScreen extends StatelessWidget {
             Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {
-              SupabaseInternals().googleSignIn();
+                onTap: () async {
+                  final success = await SupabaseInternals().googleSignIn();
+
+                  if (success) {
+                    print("logged in");
+                  } else {
+                    print("login failed");
+                  }
                 },
                 borderRadius: BorderRadius.circular(18),
                 child: Ink(
