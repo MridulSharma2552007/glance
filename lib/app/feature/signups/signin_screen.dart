@@ -1,6 +1,11 @@
+import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:glance/core/supabase/supabase_internals.dart';
 import 'package:glance/core/theme/app_colors.dart';
+import 'package:delightful_toast/delight_toast.dart';
+import 'package:glance/core/storage/storage_services.dart';
+import 'package:glance/core/storage/storage_keys.dart';
+import 'package:go_router/go_router.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({super.key});
@@ -25,9 +30,49 @@ class SigninScreen extends StatelessWidget {
                   final success = await SupabaseInternals().googleSignIn();
 
                   if (success) {
-                    print("logged in");
+                    DelightToastBar(
+                      builder: (context) => const ToastCard(
+                        leading: Icon(
+                          Icons.check_circle,
+                          size: 28,
+                          color: Colors.green,
+                        ),
+                        title: Text(
+                          "Signed in successfully",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ).show(context);
+
+                    final role = StorageServices.getString(StorageKeys.userrole);
+
+                    if (role == 'Student') {
+                      context.pushReplacementNamed('student_registration');
+                    } else if (role == 'Teacher') {
+                      context.pushReplacementNamed('teacher_registration');
+                    } else {
+                      context.pushReplacementNamed('role_selection');
+                    }
                   } else {
-                    print("login failed");
+                    DelightToastBar(
+                      builder: (context) => const ToastCard(
+                        leading: Icon(
+                          Icons.error,
+                          size: 28,
+                          color: Colors.red,
+                        ),
+                        title: Text(
+                          "Sign in failed",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ).show(context);
                   }
                 },
                 borderRadius: BorderRadius.circular(18),
