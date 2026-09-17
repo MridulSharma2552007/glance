@@ -42,6 +42,7 @@ dependencies:
   supabase_flutter: ^2.17.2
   google_sign_in: ^7.2.0
   shared_preferences: ^2.5.5
+  delightful_toast: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   # Include environment file so `flutter_dotenv` can load it at runtime.
   assets:
     - .env
+    - assets/pngwing.com.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

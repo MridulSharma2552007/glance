@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const authRoutes =require("./routes/auth");
 const app = express();
 
 app.use(cors());
@@ -11,5 +11,5 @@ app.get("/", (req, res) => {
         message: "Glance API is running..."
     });
 });
-
+ app.use("/api", authRoutes);
 module.exports = app;
