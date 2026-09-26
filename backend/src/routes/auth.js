@@ -1,9 +1,7 @@
-const express = require("express");
 const crypto = require("crypto");
-const router = express.Router();
 const supabase = require("../db");
 
-router.post("/signup", async (req, res) => {
+async function signup(req, res) {
     const { roll_no, email, faceVector } = req.body;
 
     if (!roll_no || !email || !faceVector) {
@@ -35,6 +33,6 @@ router.post("/signup", async (req, res) => {
         console.error(err);
         return res.status(500).json({ error: "Server error" });
     }
-});
+}
 
-module.exports = router;
+module.exports = { signup };
