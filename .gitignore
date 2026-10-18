@@ -48,3 +48,4 @@ app.*.map.json
 #backend 
 backend/node_modules/
 backend/.env
+backend/glance_ai/.venv/
